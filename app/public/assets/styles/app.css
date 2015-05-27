@@ -1,0 +1,386 @@
+/* App Style Sheet */
+
+
+/* START - General styles */
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto Slab';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    min-height: 100%;
+    padding: 108px 15px 20px 15px;
+}
+
+/*body {
+    font-size: 13px;
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    min-height: 100%;
+    overflow-x: hidden;
+    padding-bottom: 20px;
+    padding-top: 70px;
+}*/
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* END - General styles */
+
+
+/* START - Styles for validation helpers */
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* END - Styles for validation helpers */
+
+
+/* START - Styles for top nav bar */
+
+.navbar-default.top-navbar {
+    background-color: #4eaded;
+    border-color: #4eaded;
+}
+
+.navbar-default .second-top-nav{
+    background-color: #0088dc !important;
+    height: 43px;
+}
+
+.navbar-default .second-top-nav a {
+    color: white !important;
+}
+
+.navbar-default.top-navbar h1 {
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* END - Styles for top nav bar */
+
+
+/* START - Styles for left nav bar */
+
+.left-nav-bar {
+    background-color: #1ba2db;
+    margin-left: -15px;
+    margin-top: -14px;
+    min-height: 100%;
+    position: fixed;
+}
+
+.left-nav-bar a {
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+/* END - Styles for left nav bar */
+
+
+/* START - Styles for container */
+
+.workout-display-div {
+    padding: 40px;
+    text-align: center;
+}
+
+.workout-display-div .img-responsive {
+    cursor: pointer;
+    height: 360px;
+    margin: 25px auto;
+    width: 540px;
+}
+
+.workout-display-div .time-progress {
+    margin-top: 40px;
+}
+
+/* END - Styles for container */
+
+
+/* START - Styles for start page */
+
+.text-center {
+    color: #4eaded;
+}
+
+#start {
+    margin-top: 25px;
+    text-align: center;
+}
+
+#start a {
+    color: #4eaded;
+    font-size: 67px;
+    text-decoration: none;
+}
+
+#start a:hover {
+    color: #4eaded;
+}
+
+#start a .glyphicon {
+    top: 8px;
+}
+
+/* END - Styles for start page */
+
+
+/* START - Styles for workout page */
+
+.workout-app-container {
+    padding-top: 15px;
+}
+
+#video-panel .panel-body {
+    max-height: 650px;
+    overflow: auto;
+}
+
+#pause-overlay {
+    height: 100%;
+    opacity: 0; /* Comment this line to try our mouse event based pause and resume. */
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 10; 
+}
+
+/* Comment this style to try our mouse event based pause and resume. */
+#pause-overlay:hover {
+    opacity: .8;     
+}
+
+#pause-overlay .pause {
+    color: #4eaded;
+    font-size: 120pt;
+    height: 140px;
+    width: 140px;
+}
+
+.absolute-center {
+    bottom: 0; 
+    left: 0; 
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0; 
+}
+
+#play-video-overlay {
+    height: 100%;
+    opacity: 0;
+    position: absolute;  
+    top: 0px;
+    width: 100%;
+    z-index: 10; 
+}
+
+#play-video-overlay:hover {
+    opacity: .6;     
+}
+
+#play-video-overlay .video {
+    color: #4eaded;
+    font-size: 80pt;
+    height: 100px;
+    width: 100px;
+}
+
+/* END - Styles for workout page */
+
+
+/* BEGIN - Animation effects workout */
+
+div[ng-view] {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+div[ng-view].ng-enter,
+div[ng-view].ng-leave {
+    -webkit-transition: all 1s ease;
+       -moz-transition: all 1s ease;
+         -o-transition: all 1s ease;
+            transition: all 1s ease;
+}
+
+div[ng-view].ng-enter {
+    left: 100%; /* Initial css for view transition in */
+}
+
+div[ng-view].ng-leave {
+    left: 0%; /* Initial css for view transition out */
+}
+
+div[ng-view].ng-enter-active {
+    left: 0%; /* Final css for view transition in */
+}
+
+div[ng-view].ng-leave-active {
+    left: -100%; /* Final css for view transition out */
+}
+
+.video-image.ng-enter,
+.video-image.ng-move {
+    -webkit-animation: bounceIn 1s;
+       -moz-animation: bounceIn 1s;
+        -ms-animation: bounceIn 1s;
+            animation: bounceIn 1s;
+}
+
+.video-image.ng-leave {
+    -webkit-animation: bounceOut 1s;
+       -moz-animation: bounceOut 1s;
+        -ms-animation: bounceOut 1s;
+            animation: bounceOut 1s;
+}
+
+/* END - Animation effects workout */
+
+
+/* START - Workout builder styles */
+
+#left-nav-exercises button {
+    margin-bottom: 4px;
+}
+
+#left-nav-exercises button .glyphicon {
+    margin-left: 6px;
+}
+
+.exercise-item.ng-enter,
+.exercise-item.ng-move {
+    -webkit-animation: zoomIn 0.5s;
+       -moz-animation: zoomIn 0.5s;
+        -ms-animation: zoomIn 0.5s;
+            animation: zoomIn 0.5s;
+}
+
+.exercise-item.ng-leave {
+    -webkit-animation: fadeOut 0.25s;
+       -moz-animation: fadeOut 0.25s;
+        -ms-animation: fadeOut 0.25s;
+            animation: fadeOut 0.25s;
+}
+
+/* END - Workout builder styles */
+
+
+/* START - Styles for tile */
+
+.exercise.tile {
+    height: 240px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 370px;
+}
+
+.exercise.tile:nth-child(n) {
+    background-color: #02c69a;
+}
+
+.exercise.tile div {
+    float: left;
+}
+
+.exercise.tile div:first-child {
+    font-size: 40px;
+    width: 50px;
+}
+
+.exercise.tile div:nth-child(2) {
+    width: 245px;
+}
+
+.exercise.tile div:nth-child(2) input {
+    display: block;
+}
+
+.exercise.tile div:nth-child(2) div {
+    margin: 10px 0px 10px 0px;
+}
+
+.exercise.tile div:last-child {
+    width: 53px;
+}
+
+.workout.tile {
+    background: #5bc0de;
+    color: white;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 300px;
+}
+
+.workout.tile:hover {
+    background: #1D89CF;
+}
+
+.workout .title {
+    font-size: 20pt;
+    text-align: center;
+}
+
+.workout .stats {
+    font-size: 12pt;
+    padding: 0 10px 0 10px;
+}
+
+.exercise-tile {
+    background: #5bc0de;
+    color: white;
+    font-size: 18pt;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 300px;
+}
+
+.exercise-tile:hover {
+    background: #1D89CF;
+}
+
+/* END - Styles for tile */

@@ -16,17 +16,6 @@ body {
     padding: 108px 15px 20px 15px;
 }
 
-/*body {
-    font-size: 13px;
-    font-family: 'Roboto Slab';
-    font-style: normal;
-    font-weight: 400;
-    min-height: 100%;
-    overflow-x: hidden;
-    padding-bottom: 20px;
-    padding-top: 70px;
-}*/
-
 /* Set padding to keep content from hitting the edges */
 /*.body-content {
     padding-left: 15px;
@@ -168,6 +157,7 @@ input[type="checkbox"].input-validation-error {
 /* START - Styles for workout page */
 
 .workout-app-container {
+    outline: none;
     padding-top: 15px;
 }
 
@@ -177,6 +167,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 #pause-overlay {
+    cursor: pointer;
     height: 100%;
     opacity: 0; /* Comment this line to try our mouse event based pause and resume. */
     position: absolute;
@@ -216,6 +207,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 #play-video-overlay:hover {
+    cursor: pointer;
     opacity: .6;     
 }
 
@@ -388,13 +380,13 @@ div[ng-view].ng-leave-active {
 
 /* |====| START - My own styles |===========================================| */
 
-/*.procedure {
+.procedure {
     padding-left: 15px;
 }
 
 .procedure > li {
     list-style-type: square;
-}*/
+}
 
 #workoutHistoryLink {
     cursor: pointer;

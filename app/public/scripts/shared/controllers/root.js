@@ -1,7 +1,7 @@
-+function (window, angular, sevenMinuteWorkout) {
++function (window, angular, app) {
     'use strict';
     
-    sevenMinuteWorkout.controller('RootController', ['$scope', '$modal', function ($scope, $modal) {
+    app.controller('RootController', ['$scope', '$modal', function ($scope, $modal) {
         var WorkoutHistoryController = function ($scope, $modalInstance, workoutHistoryTracker) {
             $scope.search = {
                 completed: false
@@ -33,4 +33,4 @@
         
         init();
     }]);
-}(this, this.angular, this.sevenMinuteWorkout);
+}(this, this.angular, this.app);

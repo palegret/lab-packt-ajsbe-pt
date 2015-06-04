@@ -1,24 +1,13 @@
 +function (window, angular, sevenMinuteWorkout) {
     'use strict';
     
-    var _workoutControllerFactory = function ($scope, $interval, $location, Exercise, WorkoutPlan, workoutExercises, workoutHistoryTracker, appEvents) {
-        var restExercise,
+    var _workoutControllerFactory = function ($scope, $interval, $location, Exercise, WorkoutPlan, WorkoutService, workoutHistoryTracker, appEvents) {
+        var restExercise = WorkoutService.getRestExercise(),
             exerciseIntervalPromise;
     
         var startWorkout = function () {
-            $scope.workoutPlan = createWorkout();
+            $scope.workoutPlan = WorkoutService.getInitialWorkout();
             $scope.workoutTimeRemaining = $scope.workoutPlan.totalWorkoutDuration();
-            
-            restExercise = {
-                details: new Exercise({
-                    name: 'rest',
-                    title: 'Relax!',
-                    description: 'Relax a bit!',
-                    image: 'assets/images/rest.png',
-                }),
-                duration: $scope.workoutPlan.restBetweenExercise
-            };
-            
             workoutHistoryTracker.startTracking();
             $scope.currentExerciseIndex = -1;
             startExercise($scope.workoutPlan.exercises.shift());
@@ -97,17 +86,6 @@
             exerciseIntervalPromise = startExerciseTimeTracking();
         };
     
-        var createWorkout = function () {
-            var workout = new WorkoutPlan({
-                name: '7minWorkout',
-                title: '7 Minute Workout',
-                restBetweenExercise: 10,
-                exercises: workoutExercises.get()
-            });
-            
-            return workout;
-        };
-    
         var init = function () {
             startWorkout();
         };
@@ -121,7 +99,7 @@
         '$location', 
         'Exercise', 
         'WorkoutPlan',
-        'workoutExercises', 
+        'WorkoutService', 
         'workoutHistoryTracker', 
         'appEvents', 
         _workoutControllerFactory

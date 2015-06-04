@@ -4,7 +4,7 @@
 	window.sevenMinuteWorkout = angular.module('7MinuteWorkout', []);
 	window.workoutBuilder = angular.module('WorkoutBuilder', []);
 
-	var app = angular.module('app', [
+	var _app = angular.module('app', [
 		'ngRoute', 
 		'ngSanitize', 
 		'ngAnimate', 
@@ -15,7 +15,7 @@
 		'WorkoutBuilder'
 	]);
 
-	app.config(function ($routeProvider, $sceDelegateProvider) {
+	_app.config(function ($routeProvider, $sceDelegateProvider) {
 	    var VIEW_ROOT = 'content/views/',
 	    	PARTIALS_ROOT = 'content/partials/';
 	    
@@ -80,4 +80,6 @@
 			'https://*.youtube.com/**'
 		]);
 	});
+	
+	window.app = _app;
 }(this, this.angular);

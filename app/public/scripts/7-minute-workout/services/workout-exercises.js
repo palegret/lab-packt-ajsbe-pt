@@ -1,13 +1,13 @@
 +function (window, angular, sevenMinuteWorkout) {
     'use strict';
     
-    sevenMinuteWorkout.factory('workoutExercises', ['workoutEntities', function (workoutEntities) {
+    sevenMinuteWorkout.factory('workoutExercises', ['Exercise', function (Exercise) {
         var DEFAULT_DURATION = 30;
     
         var _exercises = [];
 
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'jumpingJacks',
                 title: 'Jumping Jacks',
                 description: 'A jumping jack or star jump, also called side-straddle hop is a physical jumping exercise.',
@@ -28,7 +28,7 @@
         });
             
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'wallSit',
                 title: 'Wall Sit',
                 description: 'A wall sit, also known as a Roman Chair, is an exercise done to strengthen the quadriceps muscles.',
@@ -45,7 +45,7 @@
         });
         
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'pushUp',
                 title: 'Push Up',
                 description: 'A push-up is a common exercise performed in a prone position by raising and lowering the body using the arms',
@@ -66,7 +66,7 @@
         });
             
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'crunches',
                 title: 'Abdominal Crunches',
                 description: 'The basic crunch is a abdominal exercise in a strength-training program.',
@@ -87,7 +87,7 @@
         });
         
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'stepUpOntoChair',
                 title: 'Step Up Onto Chair',
                 description: 'Step _exercises are ideal for building muscle in your lower body.',
@@ -105,7 +105,7 @@
         });
         
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'squat',
                 title: 'Squat',
                 description: 'The squat is a compound, full body exercise that trains primarily the muscles of the thighs, hips, buttocks and quads.',
@@ -125,7 +125,7 @@
         });
             
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'tricepdips',
                 title: 'Tricep Dips On Chair',
                 description: 'A body weight exercise that targets triceps.',
@@ -144,7 +144,7 @@
         });
         
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'plank',
                 title: 'Plank',
                 description: 'The plank (also called a front hold, hover, or abdominal bridge) is an isometric core strength exercise that involves maintaining a difficult position for extended periods of time. ',
@@ -163,7 +163,7 @@
         });
         
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'highKnees',
                 title: 'High Knees',
                 description: 'A form exercise that develops strength and endurance of the hip flexors and quads and stretches the hip extensors.',
@@ -180,7 +180,7 @@
         });
             
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'lunges',
                 title: 'Lunges',
                 description: 'Lunges are a good exercise for strengthening, sculpting and building several muscles/muscle groups, including the quadriceps (or thighs), the gluteus maximus (or buttocks) as well as the hamstrings. ',
@@ -200,7 +200,7 @@
         });
         
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'pushupNRotate',
                 title: 'Pushup And Rotate',
                 description: 'A variation of pushup that requires you to rotate.',
@@ -216,7 +216,7 @@
         });
             
         _exercises.push({
-            details: new workoutEntities.Exercise({
+            details: new Exercise({
                 name: 'sidePlank',
                 title: 'Side Plank',
                 description: 'A variation to Plank done using one hand only',

@@ -1,7 +1,7 @@
 +function (window, angular, sevenMinuteWorkout) {
     'use strict';
     
-    var _workoutControllerFactory = function ($scope, $interval, $location, workoutEntities, workoutExercises, workoutHistoryTracker, appEvents) {
+    var _workoutControllerFactory = function ($scope, $interval, $location, Exercise, WorkoutPlan, workoutExercises, workoutHistoryTracker, appEvents) {
         var restExercise,
             exerciseIntervalPromise;
     
@@ -10,7 +10,7 @@
             $scope.workoutTimeRemaining = $scope.workoutPlan.totalWorkoutDuration();
             
             restExercise = {
-                details: new workoutEntities.Exercise({
+                details: new Exercise({
                     name: 'rest',
                     title: 'Relax!',
                     description: 'Relax a bit!',
@@ -98,7 +98,7 @@
         };
     
         var createWorkout = function () {
-            var workout = new workoutEntities.WorkoutPlan({
+            var workout = new WorkoutPlan({
                 name: '7minWorkout',
                 title: '7 Minute Workout',
                 restBetweenExercise: 10,
@@ -119,7 +119,8 @@
         '$scope', 
         '$interval', 
         '$location', 
-        'workoutEntities', 
+        'Exercise', 
+        'WorkoutPlan',
         'workoutExercises', 
         'workoutHistoryTracker', 
         'appEvents', 

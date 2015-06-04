@@ -37,37 +37,37 @@
 		});
 
 		$routeProvider.when('/builder/workouts', {
-			templateUrl: VIEW_ROOT + 'workoutbuilder/workouts.html',
+			templateUrl: VIEW_ROOT + 'workout-builder/workouts.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-main.html',
 			topNav: PARTIALS_ROOT + 'top-nav.html',
 			controller: 'WorkoutListController'
 		});
 
 		$routeProvider.when('/builder/exercises', {
-			templateUrl: VIEW_ROOT + 'workoutbuilder/exercises.html',
+			templateUrl: VIEW_ROOT + 'workout-builder/exercises.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-main.html',
 			topNav: PARTIALS_ROOT + 'top-nav.html',
 			controller: 'ExerciseListController'
 		});
 
 		$routeProvider.when('/builder/workouts/new', {
-			templateUrl: VIEW_ROOT + 'workoutbuilder/workouts.html',
+			templateUrl: VIEW_ROOT + 'workout-builder/workouts.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-exercises.html',
 			topNav: PARTIALS_ROOT + 'top-nav.html'
 		});
 		
 		$routeProvider.when('/builder/workouts/:id', {
-			templateUrl: VIEW_ROOT + 'workoutbuilder/workouts.html',
+			templateUrl: VIEW_ROOT + 'workout-builder/workouts.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-exercises.html',
 			topNav: PARTIALS_ROOT + 'top-nav.html'
 		});
 
 	    $routeProvider.when('/builder/exercises/new', { 
-			templateUrl: VIEW_ROOT + 'workoutbuilder/exercises.html'
+			templateUrl: VIEW_ROOT + 'workout-builder/exercises.html'
 	    });
 	    
 	    $routeProvider.when('/builder/exercises/:id', { 
-			templateUrl: VIEW_ROOT + 'workoutbuilder/exercises.html'
+			templateUrl: VIEW_ROOT + 'workout-builder/exercises.html'
 	    });
 
 		$routeProvider.otherwise({

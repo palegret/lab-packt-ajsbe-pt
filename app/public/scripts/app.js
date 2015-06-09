@@ -53,13 +53,31 @@
 		$routeProvider.when('/builder/workouts/new', {
 			templateUrl: VIEW_ROOT + 'workout-builder/workouts.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-exercises.html',
-			topNav: PARTIALS_ROOT + 'top-nav.html'
+			topNav: PARTIALS_ROOT + 'top-nav.html',
+			controller: 'WorkoutDetailController',
+			resolve: {
+				selectedWorkout: ['WorkoutBuilderService', function (WorkoutBuilderService) {
+					return WorkoutBuilderService.startBuilding();
+				}],
+			}
 		});
 		
 		$routeProvider.when('/builder/workouts/:id', {
-			templateUrl: VIEW_ROOT + 'workout-builder/workouts.html',
+			templateUrl: VIEW_ROOT + 'workout-builder/workout.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-exercises.html',
-			topNav: PARTIALS_ROOT + 'top-nav.html'
+			topNav: PARTIALS_ROOT + 'top-nav.html',
+	        controller: 'WorkoutDetailController',
+	        resolve: {
+	            selectedWorkout: ['WorkoutBuilderService', '$route', '$location', function (WorkoutBuilderService, $route, $location) {
+	                var workout = WorkoutBuilderService.startBuilding($route.current.params.id);
+	                
+	                // If the workout not found, redirect to workout list
+	                if (!workout)
+	                    $location.path('/builder/workouts');    
+
+	                return workout;
+	            }]
+	        }
 		});
 
 	    $routeProvider.when('/builder/exercises/new', { 
@@ -67,7 +85,7 @@
 	    });
 	    
 	    $routeProvider.when('/builder/exercises/:id', { 
-			templateUrl: VIEW_ROOT + 'workout-builder/exercises.html'
+			templateUrl: VIEW_ROOT + 'workout-builder/exercise.html'
 	    });
 
 		$routeProvider.otherwise({

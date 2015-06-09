@@ -68,7 +68,7 @@ input[type="checkbox"].input-validation-error {
     border-color: #4eaded;
 }
 
-.navbar-default .second-top-nav{
+.navbar-default .second-top-nav {
     background-color: #0088dc !important;
     height: 43px;
 }
@@ -81,6 +81,11 @@ input[type="checkbox"].input-validation-error {
     color: white;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.navbar-brand a {
+    color: #fff;
+    text-decoration: none;
 }
 
 /* END - Styles for top nav bar */
@@ -281,6 +286,10 @@ div[ng-view].ng-leave-active {
     margin-left: 6px;
 }
 
+#left-nav-exercises h4 {
+    color: #fff;
+}
+
 .exercise-item.ng-enter,
 .exercise-item.ng-move {
     -webkit-animation: zoomIn 0.5s;
@@ -302,44 +311,48 @@ div[ng-view].ng-leave-active {
 /* START - Styles for tile */
 
 .exercise.tile {
-    height: 240px;
+    background: #61b9ff;
+    color: #fff;
+    height: 226px;
     margin-bottom: 10px;
-    padding: 10px;
-    width: 370px;
+    width: 320px;
 }
 
-.exercise.tile:nth-child(n) {
-    background-color: #02c69a;
+.exercise.tile .title {
+    background: #9d4a9c;
+    font-size: 14pt;
+    padding: 5px;
+    width: inherit;
 }
 
-.exercise.tile div {
+.exercise.tile .index {
     float: left;
+    font-size: 20pt;
+    padding-top: 10px;
+    text-align: center;
+    width: 40px;
 }
 
-.exercise.tile div:first-child {
-    font-size: 40px;
-    width: 50px;
-}
-
-.exercise.tile div:nth-child(2) {
-    width: 245px;
-}
-
-.exercise.tile div:nth-child(2) input {
-    display: block;
-}
-
-.exercise.tile div:nth-child(2) div {
-    margin: 10px 0px 10px 0px;
-}
-
-.exercise.tile div:last-child {
+.exercise.tile .order {
+    float: right;
     width: 53px;
+}
+
+.exercise.tile .main {
+    float: left;
+    padding: 4px;
+    width: 225px;
+}
+
+.exercise.tile img {
+    height: 120px;
+    width: 100%;
 }
 
 .workout.tile {
     background: #5bc0de;
-    color: white;
+    color: #fff;
+    cursor: pointer;
     height: 80px;
     margin-bottom: 10px;
     padding: 10px;
@@ -347,7 +360,7 @@ div[ng-view].ng-leave-active {
 }
 
 .workout.tile:hover {
-    background: #1D89CF;
+    background: #1d89cf;
 }
 
 .workout .title {
@@ -362,7 +375,8 @@ div[ng-view].ng-leave-active {
 
 .exercise-tile {
     background: #5bc0de;
-    color: white;
+    color: #fff;
+    cursor: pointer;
     font-size: 18pt;
     height: 50px;
     margin-bottom: 10px;
@@ -373,6 +387,11 @@ div[ng-view].ng-leave-active {
 
 .exercise-tile:hover {
     background: #1D89CF;
+}
+
+.select-duration {
+    color: rgb(51, 51, 51);
+    margin-top: 2px;
 }
 
 /* END - Styles for tile */

@@ -11,28 +11,49 @@
     </div>
     <form class="row" name="formWorkout" novalidate>
         <div id="exercises-list" class="col-sm-5 col-sm-offset-1">
+            <!--
+            When Angular encounters ng-model on an element *inside a form*, it creates an 
+            NgModelController and exposes it on the scope using the name attribute 
+            (exerciseCount). The <span/> is used to get hold of the model controller so 
+            that the exercise count validator can be registered. 
+            
+            We are not using ng-model in its true sense here, since no two-way binding is 
+            involved. We only want the model controller API to do custom validation.
+            -->
+            <span name="exerciseCount" ng-model="workout.exercises.length"></span>
+            <div class="alert alert-danger" ng-show="formWorkout.exerciseCount.$dirty && formWorkout.exerciseCount.$error.count">
+                The workout should have at least one exercise!
+            </div>
             <div ng-repeat="exercise in workout.exercises" class="exercise-item">
                 <div ng-include="'workout-exercise-tile'"></div>
             </div>
         </div>
         <div id="workout-data" class="col-sm-3">
-            <div class="form-group row">
+            <div class="form-group row" ng-class="{ 'has-error': formWorkout.workoutName.$invalid }">
                 <label for="workout-name">Name:</label>
                 <input id="workout-name" 
                        type="text" 
                        name="workoutName" 
                        class="form-control" 
                        placeholder="Enter workout name. Must be unique." 
-                       ng-model="workout.name">{{workout.name}}
+                       ng-model="workout.name" 
+                       ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 1000, 'blur': 0 } }"
+                       required>{{workout.name}}
+                       <!--OR: ...ng-model-options="{ updateOn: 'blur' }">{{workout.name}}-->
+                       <!--OR: ...ng-model-options="{ updateOn: 'blur mouseleave' }">{{workout.name}}-->
+                <label ng-show="formWorkout.workoutName.$error.required" ng-class="{ 'text-danger': formWorkout.workoutName.$error.required }">
+                    Workout name is required and it should be unique.
+                </label>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" ng-class="{ 'has-error': formWorkout.title.$invalid }">
                 <label for="workout-title">Title:</label>
                 <input id="workout-title" 
                        type="text" 
                        name="title" 
                        class="form-control" 
                        placeholder="What would be the workout title?" 
-                       ng-model="workout.title">
+                       ng-model="workout.title"
+                       required>
             </div>
             <div class="form-group row">
                 <label for="workout-description">Description:</label>
@@ -43,14 +64,25 @@
                           ng-model="workout.description">
                 </textarea>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" ng-class="{'has-error': formWorkout.restBetweenExercise.$error.number }">
                 <label for="workout-rest">Rest Time (in seconds):</label>
                 <input id="workout-rest" 
                        name="restBetweenExercise" 
                        type="number" 
                        class="form-control" 
                        placeholder="Rest period between exercise in seconds." 
-                       ng-model="workout.restBetweenExercise">
+                       ng-model="workout.restBetweenExercise"
+                       min="1" 
+                       ng-pattern="/^-.?\d+$/"
+                       required>
+                <!--Could use for rolling up all form validation:-->
+                <!--<div ng-messages="..." ng-messages-multiple>...</div>-->
+                <div ng-messages="formWorkout.restBetweenExercise.$error" ng-if="formWorkout.restBetweenExercise.$dirty">
+                    <label ng-message="required" class="text-danger">Time duration is required.</label>
+                    <label ng-message="number" class="text-danger">Time duration should be numeric.</label>
+                    <label ng-message="min" class="text-danger">Only positive integer value allowed.</label>
+                    <label ng-message="pattern" class="text-danger">Only integer value allowed.</label>
+                </div>
             </div>
             <div class="form-group row">
                 <label>Total Exercises:</label>

@@ -8,6 +8,7 @@
 		'ngRoute', 
 		'ngSanitize', 
 		'ngAnimate', 
+		'ngMessages',
 		'ui.bootstrap', 
 		'mediaPlayer', 
 		'LocalStorageModule',
@@ -51,7 +52,7 @@
 		});
 
 		$routeProvider.when('/builder/workouts/new', {
-			templateUrl: VIEW_ROOT + 'workout-builder/workouts.html',
+			templateUrl: VIEW_ROOT + 'workout-builder/workout.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-exercises.html',
 			topNav: PARTIALS_ROOT + 'top-nav.html',
 			controller: 'WorkoutDetailController',
@@ -61,7 +62,7 @@
 				}],
 			}
 		});
-		
+
 		$routeProvider.when('/builder/workouts/:id', {
 			templateUrl: VIEW_ROOT + 'workout-builder/workout.html',
 			leftNav: PARTIALS_ROOT + 'left-nav-exercises.html',

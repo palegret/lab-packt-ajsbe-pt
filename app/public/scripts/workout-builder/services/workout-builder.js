@@ -3,34 +3,34 @@
     
     var workoutBuilderFactory = function (Exercise, WorkoutPlan, WorkoutService) {
         var _service = {},
-            buildingWorkout,
-            newWorkout;
+            _buildingWorkout,
+            _newWorkout;
         
         _service.startBuilding = function (name) {
             if (name) {
-                buildingWorkout = WorkoutService.getWorkout(name);
-                newWorkout = false;
+                _buildingWorkout = WorkoutService.getWorkout(name);
+                _newWorkout = false;
             } else {
-                buildingWorkout = new WorkoutPlan({});
-                newWorkout = true;
+                _buildingWorkout = new WorkoutPlan({});
+                _newWorkout = true;
             }
             
-            return buildingWorkout;
+            return _buildingWorkout;
         };
 
         _service.removeExercise = function (exercise) {
-            buildingWorkout.exercises.splice(buildingWorkout.exercises.indexOf(exercise), 1);
+            _buildingWorkout.exercises.splice(_buildingWorkout.exercises.indexOf(exercise), 1);
         };
 
         _service.addExercise = function (exercise) {
-            buildingWorkout.exercises.push({ 
+            _buildingWorkout.exercises.push({ 
                 details: exercise, 
                 duration: WorkoutService.DEFAULT_DURATION 
             });
         };
 
         _service.moveExerciseTo = function (exercise, toIndex) {
-            if (toIndex < 0 || toIndex >= buildingWorkout.exercises) 
+            if (toIndex < 0 || toIndex >= _buildingWorkout.exercises) 
                 return;
                 
             // Reminder: array.splice(startIndex, numberToDelete[, item1[, item2[, ...]]])
@@ -39,9 +39,19 @@
             // * If numberToDelete is zero, no elements are deleted. Duh.
             // * Parameters item1, item2, etc. can be arrays.
             
-            var currentIndex = buildingWorkout.exercises.indexOf(exercise);
-            var exerciseToMove = buildingWorkout.exercises.splice(currentIndex, 1)[0];
-            buildingWorkout.exercises.splice(toIndex, 0, exerciseToMove);
+            var currentIndex = _buildingWorkout.exercises.indexOf(exercise);
+            var exerciseToMove = _buildingWorkout.exercises.splice(currentIndex, 1)[0];
+            _buildingWorkout.exercises.splice(toIndex, 0, exerciseToMove);
+        };
+
+        _service.save = function () {
+            var workout = _newWorkout 
+                ? WorkoutService.addWorkout(_buildingWorkout) 
+                : WorkoutService.updateWorkout(_buildingWorkout);
+            
+            _newWorkout = false;
+            
+            return workout;
         };
 
         return _service;

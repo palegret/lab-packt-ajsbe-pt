@@ -38,11 +38,15 @@
                        placeholder="Enter workout name. Must be unique." 
                        ng-model="workout.name" 
                        ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 1000, 'blur': 0 } }"
-                       required>{{workout.name}}
+                       required
+                       ng-pattern="/^[A-Za-z0-9]{1,15}$/">{{workout.name}}
                        <!--OR: ...ng-model-options="{ updateOn: 'blur' }">{{workout.name}}-->
                        <!--OR: ...ng-model-options="{ updateOn: 'blur mouseleave' }">{{workout.name}}-->
-                <label ng-show="formWorkout.workoutName.$error.required" ng-class="{ 'text-danger': formWorkout.workoutName.$error.required }">
+                <label ng-show="hasError(formWorkout.workoutName, formWorkout.workoutName.$error.required)" class="text-danger">
                     Workout name is required and it should be unique.
+                </label>
+                <label ng-show="hasError(formWorkout.workoutName, formWorkout.workoutName.$error.pattern)" class="text-danger">
+                    Only alphanumeric values are allowed in workout name which must be less than 16 characters.
                 </label>
             </div>
             <div class="form-group row" ng-class="{ 'has-error': formWorkout.title.$invalid }">
@@ -53,7 +57,15 @@
                        class="form-control" 
                        placeholder="What would be the workout title?" 
                        ng-model="workout.title"
-                       required>
+                       required
+                       ng-minlength="5" 
+                       ng-maxlength="20">
+                <label ng-show="hasError(formWorkout.title, formWorkout.title.$error.required)" class="text-danger">
+                    Workout title is required.
+                </label>
+                <label ng-show="hasError(formWorkout.title, formWorkout.title.$error.minlength || formWorkout.title.$error.maxlength)" class="text-danger">
+                    Title should be between 5 and 20 characters long.
+                </label>
             </div>
             <div class="form-group row">
                 <label for="workout-description">Description:</label>
@@ -90,7 +102,7 @@
             </div>
             <div class="form-group row">
                 <label>Total Duration:</label>
-                <p class="form-control-static badge">{{workout.totalWorkoutDuration()|secondsToTime}}</p>
+                <p class="form-control-static badge">{{workout.totalWorkoutDuration() | secondsToTime}}</p>
             </div>
             <div class="row">
                 <button class="btn btn-default pull-right btn-block" ng-click="save()">Save</button>
@@ -119,6 +131,9 @@
                         ng-model="exercise.duration" 
                         ng-options="duration.value as duration.title for duration in durations">
                 </select>
+                <label ng-show="hasError(formDuration.duration, formDuration.duration.$error.required)" class="text-danger">
+                    Time duration is required.
+                </label>
 			</div>
 		</div>
         <div class="order">

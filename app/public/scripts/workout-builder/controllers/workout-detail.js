@@ -38,6 +38,21 @@
             WorkoutBuilderService.moveExerciseTo(exercise, location);
         };
         
+        $scope.save = function () {
+            $scope.submitted = true; // Will force validations
+            
+            if ($scope.formWorkout.$invalid) 
+                return; 
+            
+            $scope.workout = WorkoutBuilderService.save(); 
+            $scope.formWorkout.$setPristine(); 
+            $scope.submitted = false;
+        };
+        
+        $scope.hasError = function (modelController, error) {
+            return (modelController.$dirty || $scope.submitted) && error;
+        };
+
         var init = function () {
             $scope.workout = selectedWorkout;
         };

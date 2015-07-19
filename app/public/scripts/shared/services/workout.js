@@ -29,6 +29,17 @@
                 duration: DEFAULT_REST
             };
         };
+
+        _service.getExercise = function (name) {
+            var result = null;
+            
+            angular.forEach(_service.getExercises(), function (exercise) {
+                if (exercise.name === name) 
+                    result = angular.copy(exercise);
+            });
+            
+            return result;
+        };
         
         _service.getExercises = function () {
             return _exercises;
@@ -39,7 +50,7 @@
             
             angular.forEach(_service.getWorkouts(), function (workout) {
                 if (workout.name === name) 
-                    result = workout;
+                    result = angular.copy(workout);
             });
             
             return result;
@@ -47,6 +58,24 @@
 
         _service.getWorkouts = function () {
             return _workouts;
+        };
+
+        _service.updateWorkout = function (workout) {
+            for (var i = 0, len = _workouts.length; i < len; i++) {
+                if (_workouts[i].name === workout.name) {
+                    _workouts[i] = workout;
+                    break;
+                }
+            }
+            
+            return workout;
+        };
+        
+        _service.addWorkout = function (workout) {
+            if (workout.name) {
+                _workouts.push(workout);
+                return workout;
+            }
         };
 
         var setupInitialExercises = function () {
